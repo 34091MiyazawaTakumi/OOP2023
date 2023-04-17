@@ -23,14 +23,18 @@ namespace WindowsFormsApp1 {
         }
 
         private void btPow_Click(object sender, EventArgs e) {
-            int numx = (int)nudX.Value;
-            int numy = (int)nudY.Value;
-            int ans = 1;
-            for (int i = 0; i < numy; i++)
-            {
-                ans = ans * numx;
-            }
-            tbResult.Text = ans.ToString();
+            //int numx = (int)nudX.Value;
+            //int numy = (int)nudY.Value;
+            //int ans = 1;
+            //for (int i = 0; i < numy; i++)
+            //{
+            //    ans = ans * numx;
+            //}
+            //tbResult.Text = ans.ToString();
+
+            //for文を使わないやり方
+            double result = Math.Pow((double)nudX.Value, (double)nudY.Value);
+            tbResult.Text = result.ToString();
         }
     }
 }
