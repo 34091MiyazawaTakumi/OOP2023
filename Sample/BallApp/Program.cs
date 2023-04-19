@@ -21,9 +21,17 @@ namespace BallApp {
             this.Size = new Size(800, 600);
             this.BackColor = Color.ForestGreen;
             this.Text = "BallGame";
+            this.MouseClick += Program_MouseClick;
 
+            moveTimer = new Timer();
+            moveTimer.Interval = 1;  //タイマーのインターバル(ms)
+            moveTimer.Tick += MoveTimer_Tick;  //デリゲート登録
+        }
+
+        //マウスクリック時のイベントハンドラ
+        private void Program_MouseClick(object sender, MouseEventArgs e) {
             //ボールインスタンス生成
-            soccerBall = new SoccerBall();
+            soccerBall = new SoccerBall(e.X,e.Y );
             pd = new PictureBox();  //画像を表示宇するコントロール
             pd.Image = soccerBall.Image;
             pd.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);  //画像の位置
@@ -31,12 +39,10 @@ namespace BallApp {
             pd.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
             pd.Parent = this;
 
-            moveTimer = new Timer();
-            moveTimer.Interval = 1;  //タイマーのインターバル(ms)
             moveTimer.Start();  //タイマースタート
-            moveTimer.Tick += MoveTimer_Tick;
         }
 
+        //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
             soccerBall.Move();  //移動
             pd.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);  //画像の位置
