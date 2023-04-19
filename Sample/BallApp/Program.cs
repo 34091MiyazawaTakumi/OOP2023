@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BallApp {
-    class Program :Form {
+    class Program : Form {
 
         private Timer moveTimer;  //タイマー用
         private SoccerBall soccerBall;
         private PictureBox pd;
+
+        private List<SoccerBall> balls = new List<SoccerBall>();  //ボールインスタンス格納用
+        private List<PictureBox> pds = new List<PictureBox>();  //表示用
 
         static void Main(string[] args) {
             Application.Run(new Program());
@@ -39,13 +42,19 @@ namespace BallApp {
             pd.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
             pd.Parent = this;
 
+            balls.Add(soccerBall);
+            pds.Add(pd);
+
             moveTimer.Start();  //タイマースタート
         }
 
         //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
-            soccerBall.Move();  //移動
-            pd.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);  //画像の位置
+            for (int i = 0; i < balls.Count; i++)
+            {
+                balls[i].Move();
+                pds[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);  //画像の位置
+            }
         }
     }
 }
