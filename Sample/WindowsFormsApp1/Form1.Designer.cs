@@ -45,7 +45,7 @@ namespace WindowsFormsApp1 {
             // btButton
             // 
             this.btButton.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btButton.Location = new System.Drawing.Point(486, 117);
+            this.btButton.Location = new System.Drawing.Point(540, 109);
             this.btButton.Name = "btButton";
             this.btButton.Size = new System.Drawing.Size(124, 51);
             this.btButton.TabIndex = 0;
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1 {
             this.tbAns.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbAns.Location = new System.Drawing.Point(486, 49);
             this.tbAns.Name = "tbAns";
-            this.tbAns.Size = new System.Drawing.Size(124, 34);
+            this.tbAns.Size = new System.Drawing.Size(178, 34);
             this.tbAns.TabIndex = 1;
             // 
             // label1
