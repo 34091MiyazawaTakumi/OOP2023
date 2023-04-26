@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 namespace BallApp {
     class SoccerBall : Obj{
 
+        private static int count;
+
         Random random = new Random();
+
+        public static int Count { get => count; set => count = value; }
 
         //コンストラクター
         public SoccerBall(double xp, double yp)
@@ -18,6 +22,8 @@ namespace BallApp {
             MoveX = (rndX != 0 ? rndX : 1);
             int rndY = random.Next(-50, 50);
             MoveY = (rndY != 0 ? rndY : 1);
+
+            Count++;
         }
 
         //メソッド

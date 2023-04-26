@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace BallApp {
     class TennisBall : Obj {
 
+        private static int count;
+
         Random random = new Random();
+
+        public static int Count { get => count; set => count = value; }
 
         public TennisBall(double xp, double yp)
             : base(xp, yp, @"pic\tennis_ball.png") {
@@ -16,6 +20,8 @@ namespace BallApp {
             MoveX = (rndX != 0 ? rndX : 1);
             int rndY = random.Next(-50, 50);
             MoveY = (rndY != 0 ? rndY : 1);
+
+            Count++;
         }
 
         public override void Move() {

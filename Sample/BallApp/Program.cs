@@ -10,15 +10,10 @@ namespace BallApp {
     class Program : Form {
 
         private Timer moveTimer;  //タイマー用
-        private SoccerBall soccerBall;
-        private TennisBall tennisBall;
         private PictureBox pd;
-        int ballcount = 0;
 
-        private List<SoccerBall> sballs = new List<SoccerBall>();  //ボールインスタンス格納用
-        private List<TennisBall> tballs = new List<TennisBall>();
+        private List<Obj> balls = new List<Obj>();  //ボールインスタンス格納用
         private List<PictureBox> pds = new List<PictureBox>();  //表示用
-        private List<PictureBox> pdt = new List<PictureBox>();
 
         static void Main(string[] args) {
             Application.Run(new Program());
@@ -27,57 +22,59 @@ namespace BallApp {
         public Program() {
             this.Size = new Size(800, 600);
             this.BackColor = Color.ForestGreen;
-            this.Text = "BallGame" + ballcount;
             this.MouseClick += Program_MouseClick;
+            this.KeyDown += Program_KeyDown;
 
             moveTimer = new Timer();
             moveTimer.Interval = 1;  //タイマーのインターバル(ms)
             moveTimer.Tick += MoveTimer_Tick;  //デリゲート登録
         }
 
+        //キーが押された時のイベントハンドラ
+        private void Program_KeyDown(object sender, KeyEventArgs e) {
+            Obj barObj = new Bar(400, 300);
+            if (e.KeyCode == Keys.Left){
+                //e.X += -1;
+            }else{
+                //barObj.Xp += 1;
+            }
+        }
+
         //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
+            Obj ballObj;
+            pd = new PictureBox();  //画像を表示宇するコントロール
             if (e.Button == MouseButtons.Left){
                 //ボールインスタンス生成
-                soccerBall = new SoccerBall(e.X - 25, e.Y - 25);
-                pd = new PictureBox();  //画像を表示宇するコントロール
-                pd.Image = soccerBall.Image;
-                pd.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);  //画像の位置
+                ballObj = new SoccerBall(e.X - 25, e.Y - 25);
+                
                 pd.Size = new Size(50, 50);  //画像の表示サイズ
-                pd.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-                pd.Parent = this;
-
-                sballs.Add(soccerBall);
-                pds.Add(pd);
-                this.Text = "BallGame" + ++ballcount;
-                moveTimer.Start();  //タイマースタート
-            }else{
-                tennisBall = new TennisBall(e.X - 25, e.Y - 25);
-                pd = new PictureBox();  //画像を表示宇するコントロール
-                pd.Image = tennisBall.Image;
-                pd.Location = new Point((int)tennisBall.PosX, (int)tennisBall.PosY);  //画像の位置
-                pd.Size = new Size(25, 25);  //画像の表示サイズ
-                pd.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
-                pd.Parent = this;
-
-                tballs.Add(tennisBall);
-                pdt.Add(pd);
-                this.Text = "BallGame" + ++ballcount;
-                moveTimer.Start();  //タイマースタート
             }
+            else{
+                ballObj = new TennisBall(e.X - 10, e.Y - 10);
+                
+                pd.Size = new Size(20, 20);  //画像の表示サイズ
+            }
+            
+            pd.Image = ballObj.Image;
+            pd.Location = new Point((int)ballObj.PosX, (int)ballObj.PosY);  //画像の位置
+            pd.SizeMode = PictureBoxSizeMode.StretchImage;  //画像の表示モード
+            pd.Parent = this;
+
+            balls.Add(ballObj);
+            pds.Add(pd);
+
+            this.Text = "BallGame  SoccerBall:" + SoccerBall.Count + " TennisBall:" + TennisBall.Count;
+
+            moveTimer.Start();  //タイマースタート
         }
 
         //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
-            for (int i = 0; i < sballs.Count; i++)
+            for (int i = 0; i < balls.Count; i++)
             {
-                sballs[i].Move();
-                pds[i].Location = new Point((int)sballs[i].PosX, (int)sballs[i].PosY);  //画像の位置
-            }
-            for (int i = 0; i < tballs.Count; i++)
-            {
-                tballs[i].Move();
-                pdt[i].Location = new Point((int)tballs[i].PosX, (int)tballs[i].PosY);  //画像の位置
+                balls[i].Move();
+                pds[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);  //画像の位置
             }
         }
     }
