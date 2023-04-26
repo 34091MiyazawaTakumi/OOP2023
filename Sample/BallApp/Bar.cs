@@ -3,25 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BallApp {
     class Bar : Obj{
 
-        Random random = new Random();
-
         public Bar(double xp, double yp)
             : base(xp, yp, @"pic\bar.png") {
-
-            int rndX = random.Next(-50, 50);
-            MoveX = (rndX != 0 ? rndX : 1);
-            int rndY = random.Next(-50, 50);
-            MoveY = (rndY != 0 ? rndY : 1);
-        }
-
-        
+            base.MoveX = 10;
+            base.MoveY = 0;
+        }        
 
         public override void Move() {
 
+        }
+
+        public override void Move(Keys direction) {
+            if(direction == Keys.Right)
+            {
+                if (PosX < 640)
+                {
+                    PosX += 10;
+                }
+            }
+            else if (direction == Keys.Left)
+            {
+                if (PosX > 0)
+                {
+                    PosX += -10;
+                }
+            }
+           
         }
     }
 }

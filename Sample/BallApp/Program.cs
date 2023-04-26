@@ -9,9 +9,11 @@ using System.Windows.Forms;
 namespace BallApp {
     class Program : Form {
 
-        private Timer moveTimer;  //タイマー用
-        private PictureBox pd;
+        Bar bar;  //Barインスタンス格納
+        PictureBox pbBar;  //Bar表示用
 
+        private Timer moveTimer;  //タイマー用
+        
         private List<Obj> balls = new List<Obj>();  //ボールインスタンス格納用
         private List<PictureBox> pds = new List<PictureBox>();  //表示用
 
@@ -20,11 +22,25 @@ namespace BallApp {
         }
 
         public Program() {
+
+            //Form
             this.Size = new Size(800, 600);
             this.BackColor = Color.ForestGreen;
+            this.Text = "BallGame  SoccerBall:0 TennisBall:0";
+
             this.MouseClick += Program_MouseClick;
             this.KeyDown += Program_KeyDown;
 
+            //Barインスタンス生成
+            bar = new Bar(330, 520);
+            pbBar = new PictureBox();
+            pbBar.Image = bar.Image;
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
+            pbBar.Size = new Size(150, 10);
+            pbBar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBar.Parent = this;
+
+            //タイマー生成
             moveTimer = new Timer();
             moveTimer.Interval = 1;  //タイマーのインターバル(ms)
             moveTimer.Tick += MoveTimer_Tick;  //デリゲート登録
@@ -32,18 +48,15 @@ namespace BallApp {
 
         //キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            Obj barObj = new Bar(400, 300);
-            if (e.KeyCode == Keys.Left){
-                //e.X += -1;
-            }else{
-                //barObj.Xp += 1;
-            }
+            bar.Move(e.KeyData);
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
         }
 
         //マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
             Obj ballObj;
-            pd = new PictureBox();  //画像を表示宇するコントロール
+
+            PictureBox pd = new PictureBox();  //画像を表示宇するコントロール
             if (e.Button == MouseButtons.Left){
                 //ボールインスタンス生成
                 ballObj = new SoccerBall(e.X - 25, e.Y - 25);
