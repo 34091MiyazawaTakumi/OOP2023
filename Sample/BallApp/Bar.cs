@@ -14,7 +14,7 @@ namespace BallApp {
             base.MoveY = 0;
         }        
 
-        public override void Move() {
+        public override void Move(PictureBox pbBar, PictureBox pbBall) {
 
         }
 
@@ -23,14 +23,14 @@ namespace BallApp {
             {
                 if (PosX < 640)
                 {
-                    PosX += 10;
+                    PosX += 15;
                 }
             }
             else if (direction == Keys.Left)
             {
                 if (PosX > 0)
                 {
-                    PosX += -10;
+                    PosX += -15;
                 }
             }
            
