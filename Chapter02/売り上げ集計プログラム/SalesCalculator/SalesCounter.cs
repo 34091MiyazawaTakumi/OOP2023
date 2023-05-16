@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SalesCalculator {
     public class SalesCounter {
 
-        private List<Sale> _sales;
+        private IEnumerable<Sale> _sales;
 
         //コンストラクタ
         public SalesCounter(string filePath) {
@@ -17,10 +17,10 @@ namespace SalesCalculator {
         }
 
         //店舗別売り上げを求める
-        public Dictionary<string, int> GetPerStoreSales() {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+        public IDictionary<string, int> GetPerStoreSales() {
+            var dict = new Dictionary<string, int>();
 
-            foreach (Sale sale in _sales) {
+            foreach (var sale in _sales) {
                 if (dict.ContainsKey(sale.ShopName))
                     dict[sale.ShopName] += sale.Amount;  //店名が既に存在する（加算）
                 else
@@ -30,13 +30,13 @@ namespace SalesCalculator {
         }
 
         //売り上げデータを読み込み、Saleオブジェクトのリストを返す
-        private List<Sale> ReadSales(string filePath) {
-            List<Sale> sales = new List<Sale>();  //売り上げデータを格納する
-            string[] lines = File.ReadAllLines(filePath);  //ファイルからすべてのデータを読み込む
+        private IEnumerable<Sale> ReadSales(string filePath) {
+            var sales = new List<Sale>();  //売り上げデータを格納する
+            var lines = File.ReadAllLines(filePath);  //ファイルからすべてのデータを読み込む
             
-            foreach (string line in lines) {  //すべての行から一行ずつ取り出す
-                string[] items = line.Split(',');
-                Sale sale = new Sale {  //Saleインスタンスを生成
+            foreach (var line in lines) {  //すべての行から一行ずつ取り出す
+                var items = line.Split(',');
+                var sale = new Sale {  //Saleインスタンスを生成
                     ShopName = items[0],
                     ProductCategory = items[1],
                     Amount = int.Parse(items[2])
