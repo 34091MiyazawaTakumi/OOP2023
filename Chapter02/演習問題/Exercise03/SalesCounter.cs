@@ -19,21 +19,23 @@ namespace Exercise03 {
         //店舗別売り上げを求める
         public IDictionary<string, int> GetPerShopSales() {
             var dict = new Dictionary<string, int>();
-            int num = int.Parse(Console.ReadLine());
-
             foreach (var sale in _sales) {
-                if(num == 1) {
-                    if (dict.ContainsKey(sale.ShopName))
-                        dict[sale.ShopName] += sale.Amount;  //店名が既に存在する（加算）
-                    else
-                        dict[sale.ShopName] = sale.Amount;  //店名が存在しない（新規作成）
-                }
-                else if(num == 2){
-                    if (dict.ContainsKey(sale.ProductCategory))
-                        dict[sale.ProductCategory] += sale.Amount;  //店名が既に存在する（加算）
-                    else
-                        dict[sale.ProductCategory] = sale.Amount;  //店名が存在しない（新規作成）
-                }
+                if (dict.ContainsKey(sale.ShopName))
+                    dict[sale.ShopName] += sale.Amount;  //店名が既に存在する（加算）
+                else
+                    dict[sale.ShopName] = sale.Amount;  //店名が存在しない（新規作成）
+            }
+            return dict;
+        }
+
+        //商品カテゴリ別売り上げを求める
+        public IDictionary<string, int> GetPerProductCategorySales() {
+            var dict = new Dictionary<string, int>();
+            foreach (var sale in _sales) {
+                if (dict.ContainsKey(sale.ProductCategory))
+                    dict[sale.ProductCategory] += sale.Amount;  //店名が既に存在する（加算）
+                else
+                    dict[sale.ProductCategory] = sale.Amount;  //店名が存在しない（新規作成）
             }
             return dict;
         }
