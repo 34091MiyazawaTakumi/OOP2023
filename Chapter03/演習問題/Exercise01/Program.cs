@@ -36,13 +36,34 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(List<int> numbers) {
-            var nums = numbers.
+            numbers.ForEach(n => Console.WriteLine(n / 2.0));
         }
 
         private static void Exercise1_3(List<int> numbers) {
+            //var nums = numbers.Where(n => n >= 50);
+            //foreach (var num in nums) {
+            //    Console.WriteLine(num);
+            //}
+
+            numbers.Where(n => n >= 50).ToList().ForEach(Console.WriteLine);
+
+            //foreach (var item in numbers.Where(n => n >= 50)) {
+            //    Console.WriteLine(item + " ");
+            //}
         }
 
         private static void Exercise1_4(List<int> numbers) {
+            //var nums = numbers.Select(n => n * 2);
+            //foreach(var num in nums) {
+            //    Console.WriteLine(num);
+            //}
+
+            numbers.Select(n => n * 2).ToList().ForEach(Console.WriteLine);
+
+            //var list = numbers.Select(n => n * 2).ToList();
+            //foreach (var item in list) {
+            //    Console.WriteLine(item + " ");
+            //}
         }
     }
 }
