@@ -21,15 +21,28 @@ namespace Exercise01 {
             }
         }
 
-        public YearMonth AddOneMonth(int year, int month) {
+        public YearMonth AddOneMonth() {
             if (Month == 12) {
-                Year++;
-                Month = 1;
+                return new YearMonth(Year + 1, 1);
             }
             else {
-                Month++;
+                return new YearMonth(Year, Month + 1);
             }
-            return AddOneMonth(Year,Month);
+
+            //return new YearMonth(Month == 12 ? Year + 1 : Year, Month == 12 ? 1 : Month + 1);
+            
+            //if (Month == 12) {
+            //    Year++;
+            //    Month = 1;
+            //}
+            //else {
+            //    Month++;
+            //}
+            //return AddOneMonth();
         }
+
+        //public override string ToString() {
+            
+        //}
     }
 }
