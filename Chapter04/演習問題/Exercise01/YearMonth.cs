@@ -41,8 +41,8 @@ namespace Exercise01 {
             //return AddOneMonth();
         }
 
-        //public override string ToString() {
-            
-        //}
+        public override string ToString() {
+            return Year + "年" + Month + "月";
+        }
     }
 }
