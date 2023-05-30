@@ -21,10 +21,15 @@ namespace Exercise01 {
             }
         }
 
-        public YearMonth AddOneMonth() {
+        public YearMonth AddOneMonth(int year, int month) {
             if (Month == 12) {
-
+                Year++;
+                Month = 1;
             }
+            else {
+                Month++;
+            }
+            return AddOneMonth(Year,Month);
         }
     }
 }
