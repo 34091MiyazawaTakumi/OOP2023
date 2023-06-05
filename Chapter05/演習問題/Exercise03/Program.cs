@@ -39,6 +39,9 @@ namespace Exercise03 {
             String[] words = text.Split(' ');
             var count = words.Length;
             Console.WriteLine("単語数:" + count);
+
+            //int count = text.Split(' ').length;
+            //Console.WriteLine("単語数:{0}", count);
         }
 
         private static void Exercise3_4(string text) {
@@ -49,13 +52,14 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_5(string text) {
-            String[] words = text.Split(' ');
-            var sb = new StringBuilder();
-            foreach (var word in words) {
-                sb.Append(word);
+            var words = text.Split(' ').ToArray();
+
+            var sb = new StringBuilder(words[0]);
+            foreach (var word in words.Skip(1)) {
+                sb.Append(' ' + word);
             }
             var str = sb.ToString();
-            Console.WriteLine(text);
+            Console.WriteLine(str);
         }
     }
 }
