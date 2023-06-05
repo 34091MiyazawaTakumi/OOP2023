@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,9 +42,10 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_4(string text) {
-            String[] words = text.Split(' ');
-            var word = words.Where(s => s.Length <= 4);
-            Console.WriteLine(word);
+            var word = text.Split(' ').Where(s => s.Length <= 4);
+            foreach (var words in word) {
+                Console.WriteLine(words);
+            }
         }
 
         private static void Exercise3_5(string text) {
