@@ -35,6 +35,11 @@ namespace Exercise04 {
             Console.WriteLine("作家　:" + array[1]);
             Console.WriteLine("代表作:" + array[3]);
             Console.WriteLine("誕生年:" + array[5]);
+
+            //foreach (var pair in line.Split(';')) {
+            //    var array = pair.Split('=');
+            //    Console.WriteLine("{0}:{1}", ToJapanese(array[0]), array[1]);
+            //}
 #elif StringArray
             for (int i = 0; i < lines.Length; i++) {
                 var array = lines[i].Split(';', '=').ToArray();
@@ -42,8 +47,27 @@ namespace Exercise04 {
                 Console.WriteLine("代表作:" + array[3]);
                 Console.WriteLine("誕生年:" + array[5]);
             }
+
+            //foreach (var line in lines){
+            //    foreach (var pair in line.Split(';')) {
+            //        var array = pair.Split('=');
+            //        Console.WriteLine("{0}:{1}", ToJapanese(array[0]), array[1]);
+            //    }
+            //}
 #endif
             Console.WriteLine("実行時間 = {0}", sw.Elapsed.ToString(@"ss\.fffff")); //時間表示
         }
+
+        //static string ToJapanese(string key) {
+        //    switch (key) {
+        //        case "Novelist":
+        //            return "作家　";
+        //        case "BestWork":
+        //            return "代表作";
+        //        case "Born":
+        //            return "誕生年";
+        //    }
+        //    throw new ArgumentException("正しい引数ではありません");
+        //}
     }
 }
