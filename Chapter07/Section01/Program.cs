@@ -39,7 +39,7 @@ namespace Section01 {
             Console.WriteLine("1:一覧表示, 2:県名指定");
             var judge = Console.ReadLine();
             if (judge == "1") {
-                foreach (var kenChi in kenDict) {
+                foreach (var kenChi in kenDict.OrderByDescending(p => p.Value.Population)) {
                     Console.WriteLine("{0}【{1}({2})】)", kenChi.Key, kenChi.Value.City, kenChi.Value.Population);
                 }
             }
