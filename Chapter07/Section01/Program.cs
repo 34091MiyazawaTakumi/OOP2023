@@ -19,8 +19,8 @@ namespace Section01 {
                 Console.Write("所在地:");
                 cityinfo.City = Console.ReadLine();
                 Console.Write("人口:");
-                cityinfo.Papulation = int.Parse(Console.ReadLine());
-                kenDict[ken] = new CityInfo { City = cityinfo.City, Papulation = cityinfo.Papulation };
+                cityinfo.Population = int.Parse(Console.ReadLine());
+                kenDict[ken] = new CityInfo { City = cityinfo.City, Population = cityinfo.Population };
                 Console.Write("県名:");
                 ken = Console.ReadLine();
                 if (kenDict.ContainsKey(ken)) {
@@ -40,19 +40,19 @@ namespace Section01 {
             var judge = Console.ReadLine();
             if (judge == "1") {
                 foreach (var kenChi in kenDict) {
-                    Console.WriteLine("{0}【{1}({2})】)", kenChi.Key, kenChi.Value.City, kenChi.Value.Papulation);
+                    Console.WriteLine("{0}【{1}({2})】)", kenChi.Key, kenChi.Value.City, kenChi.Value.Population);
                 }
             }
             else if (judge == "2") {
                 Console.Write("県名を入力:");
                 var kenName = Console.ReadLine();
-                Console.WriteLine("【{0}(人口:{1}人)】", kenDict[kenName].City, kenDict[kenName].Papulation);
+                Console.WriteLine("【{0}(人口:{1}人)】", kenDict[kenName].City, kenDict[kenName].Population);
             }
         }
     }
 
     class CityInfo {
         public string City { get; set; }  //都市
-        public int Papulation { get; set; }  //人口
+        public int Population { get; set; }  //人口
     };
 }
