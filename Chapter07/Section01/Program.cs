@@ -7,21 +7,54 @@ using System.Threading.Tasks;
 namespace Section01 {
     class Program {
         static void Main(string[] args) {
-            var flowerDict = new Dictionary<string, int>() {
-                ["sunflower"] = 400,
-                ["pansy"] = 400,
-                ["tulip"] = 400,
-                ["rose"] = 400,
-                ["dahlia"] = 400,
+            Console.WriteLine("県庁所在地の登録");
+
+            var kenDict = new Dictionary<string, string>() {
+
             };
 
-            //morning glory(あさがお)【250円】を追加
-            flowerDict["morning glory"] = 250;
+            Console.Write("県名:");
+            string ken = Console.ReadLine();
+            while (ken != "999") {
+                Console.Write("所在地:");
+                var chi = Console.ReadLine();
+                kenDict[ken] = chi;
+                Console.Write("県名:");
+                ken = Console.ReadLine();
+                if (kenDict.ContainsKey(ken)) {
+                    Console.WriteLine("上書きしますか？ yes[0]/no[1]");
+                    var YN = Console.ReadLine();
+                    if (YN == "0") {
 
-            Console.WriteLine(" ひまわりの価格は{0}円です。", flowerDict["sunflower"]);
-            Console.WriteLine(" チューリップの価格は{0}円です。", flowerDict["tulip"]);
-            Console.WriteLine(" あさがおの価格は{0}円です。", flowerDict["morning glory"]);
+                    }
+                    else if (YN == "1") {
+                        Console.Write("県名:");
+                        ken = Console.ReadLine();
+                    }
+                }
+            }
 
+            Console.WriteLine("1:一覧表示, 2:県名指定");
+            var judge = Console.ReadLine();
+            if (judge == "1") {
+                foreach (var kenChi in kenDict) {
+                    Console.WriteLine("{0}({1})", kenChi.Key, kenChi.Value);
+                }
+            }
+            else if (judge == "2") {
+                Console.Write("県名を入力:");
+                var kenName = Console.ReadLine();
+                Console.WriteLine("{0}です", kenDict[kenName]);
+            }
+
+            var info = new Dictionary<string, int>() {
+
+            };
         }
     }
+
+    class CityInfo {
+        string City { get; set; }
+        int Papulation { get; set; }
+    };
 }
