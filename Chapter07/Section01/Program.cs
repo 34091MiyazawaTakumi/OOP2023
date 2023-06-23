@@ -9,16 +9,18 @@ namespace Section01 {
         static void Main(string[] args) {
             Console.WriteLine("県庁所在地の登録");
 
-            var kenDict = new Dictionary<string, string>() {
+            var kenDict = new Dictionary<string, CityInfo>();
 
-            };
+            var cityinfo = new CityInfo();
 
             Console.Write("県名:");
-            string ken = Console.ReadLine();
+            var ken = Console.ReadLine();
             while (ken != "999") {
                 Console.Write("所在地:");
-                var chi = Console.ReadLine();
-                kenDict[ken] = chi;
+                cityinfo.City = Console.ReadLine();
+                Console.Write("人口:");
+                cityinfo.Papulation = int.Parse(Console.ReadLine());
+                kenDict[ken] = new CityInfo { City = cityinfo.City, Papulation = cityinfo.Papulation };
                 Console.Write("県名:");
                 ken = Console.ReadLine();
                 if (kenDict.ContainsKey(ken)) {
@@ -38,7 +40,7 @@ namespace Section01 {
             var judge = Console.ReadLine();
             if (judge == "1") {
                 foreach (var kenChi in kenDict) {
-                    Console.WriteLine("{0}({1})", kenChi.Key, kenChi.Value);
+                    Console.WriteLine("{0}【{1}({2})】)", kenChi.Key, kenChi.Value.City, kenChi.Value.Papulation);
                 }
             }
             else if (judge == "2") {
@@ -46,15 +48,11 @@ namespace Section01 {
                 var kenName = Console.ReadLine();
                 Console.WriteLine("{0}です", kenDict[kenName]);
             }
-
-            var info = new Dictionary<string, int>() {
-
-            };
         }
     }
 
     class CityInfo {
-        string City { get; set; }
-        int Papulation { get; set; }
+        public string City { get; set; }  //都市
+        public int Papulation { get; set; }  //人口
     };
 }
