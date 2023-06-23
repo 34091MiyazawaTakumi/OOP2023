@@ -46,7 +46,7 @@ namespace Section01 {
             else if (judge == "2") {
                 Console.Write("県名を入力:");
                 var kenName = Console.ReadLine();
-                Console.WriteLine("{0}です", kenDict[kenName]);
+                Console.WriteLine("【{0}(人口:{1}人)】", kenDict[kenName].City, kenDict[kenName].Papulation);
             }
         }
     }
