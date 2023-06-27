@@ -13,6 +13,7 @@ namespace Section02 {
 
             Console.Write("県名:");
             var ken = Console.ReadLine();
+
             while (ken != "999") {
                 var cityinfo = new CityInfo();
                 Console.Write("市町村:");
@@ -34,6 +35,7 @@ namespace Section02 {
 
             Console.WriteLine("1:一覧表示, 2:県名指定");
             var judge = Console.ReadLine();
+
             if (judge == "1") {
                 foreach (var item in dict) {
                     foreach (var items in item.Value.OrderByDescending(p => p.Population)) {
