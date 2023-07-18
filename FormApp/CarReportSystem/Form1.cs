@@ -167,5 +167,10 @@ namespace CarReportSystem {
             //dgvCarReports.CurrentRow.Cells[4].Value = tbReport.Text;
             //dgvCarReports.CurrentRow.Cells[5].Value = pbCarImage.Image;
         }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            cbColor.ShowDialog();
+            this.BackColor = cbColor.Color;
+        }
     }
 }
