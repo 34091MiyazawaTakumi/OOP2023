@@ -14,6 +14,7 @@ namespace CarReportSystem {
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private uint mode;
 
+
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports;
@@ -120,6 +121,8 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            tssTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日(dddd) HH:mm:ss");
+            timer1.Start();
             dgvCarReports.Columns[5].Visible = false;  //画像項目非表示
             btModifyReport.Enabled = false;  //マスク処理
             btDeleteReport.Enabled = false;
@@ -191,8 +194,12 @@ namespace CarReportSystem {
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
-            mode = mode < 4 ? ++mode : 0;
+            mode = mode < 4 ? ((mode == 1) ? 3 : ++mode): 0;  //AutoSize(2)を除外
             pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
+            tssTimeNow.Text = DateTime.Now.ToString("yyyy年MM月dd日(dddd) HH:mm:ss");
         }
     }
 }
