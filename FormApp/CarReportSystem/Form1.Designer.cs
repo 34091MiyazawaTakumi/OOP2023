@@ -283,6 +283,7 @@ namespace CarReportSystem {
             this.dgvCarReports.Location = new System.Drawing.Point(84, 411);
             this.dgvCarReports.Name = "dgvCarReports";
             this.dgvCarReports.ReadOnly = true;
+            this.dgvCarReports.RowHeadersVisible = false;
             this.dgvCarReports.RowTemplate.Height = 21;
             this.dgvCarReports.Size = new System.Drawing.Size(617, 150);
             this.dgvCarReports.TabIndex = 18;
