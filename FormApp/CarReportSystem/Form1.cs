@@ -48,7 +48,7 @@ namespace CarReportSystem {
             newRow[3] = getSelectedMaker();
             newRow[4] = cbCarName.Text;
             newRow[5] = tbReport.Text;
-            newRow[6] = pbCarImage.Image;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
 
             infosys202310DataSet.CarReportTable.Rows.Add(newRow);
             this.carReportTableTableAdapter.Update(infosys202310DataSet.CarReportTable);
@@ -177,13 +177,12 @@ namespace CarReportSystem {
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
-            
         }
 
         //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
             dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
-
+            carReportTableTableAdapter.Update(infosys202310DataSet.CarReportTable);
             this.Validate();
             editItemsClear();
         }
@@ -263,47 +262,6 @@ namespace CarReportSystem {
             }
         }
 
-        private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式でシリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, CarReports);
-                    }
-                }
-                catch(Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //逆シリアル化でバイナリ形式を取り込む
-                    var bf = new BinaryFormatter();
-                    using(FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
-                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
-                        dgvCarReports.DataSource = null;
-                        dgvCarReports.DataSource = CarReports;
-                        dgvCarReports.Columns[5].Visible = false;
-                        cbAuthor.Items.Clear();
-                        cbCarName.Items.Clear();
-
-                        editItemsClear();
-                        foreach (var carReport in CarReports) {
-                            setCbAuthor(carReport.Author);
-                            setCbCarName(carReport.CarName);
-                        }
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
             if (dgvCarReports.Rows.Count != 0) {
                 dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
@@ -349,6 +307,10 @@ namespace CarReportSystem {
 
         //接続ボタンイベントハンドラ
         private void btConnection_Click(object sender, EventArgs e) {
+            dbConnection();
+        }
+
+        private void dbConnection() {
             // TODO: このコード行はデータを 'infosys202310DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202310DataSet.CarReportTable);
             dgvCarReports.ClearSelection();  //選択解除
