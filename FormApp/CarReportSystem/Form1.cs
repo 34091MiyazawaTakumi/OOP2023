@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
-        BindingList<CarReport> CarReports = new BindingList<CarReport>();
+        //BindingList<CarReport> CarReports = new BindingList<CarReport>();
         private uint mode;
 
         //設定情報保存用オブジェクト
@@ -163,6 +163,8 @@ namespace CarReportSystem {
             dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.FloralWhite;  //奇数行の色を上書き設定
 
             dgvCarReports.Columns[6].Visible = false;  //画像項目非表示
+            dgvCarReports.Columns[0].Visible = false;
+
             btModifyReport.Enabled = false;  //マスク処理
             btDeleteReport.Enabled = false;
 
@@ -327,6 +329,14 @@ namespace CarReportSystem {
 
         private void btCarNameSearch_Click(object sender, EventArgs e) {
             carReportTableTableAdapter.FillByCarName(this.infosys202310DataSet.CarReportTable, tbCarNameSearch.Text);
+        }
+
+        private void btDateSearch_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByDate(this.infosys202310DataSet.CarReportTable, dtpDateSearchS.Text, dtpDateSearchE.Text);
+        }
+
+        private void btReset_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.Fill(this.infosys202310DataSet.CarReportTable);
         }
     }
 }
