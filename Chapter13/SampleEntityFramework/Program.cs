@@ -10,6 +10,28 @@ using System.Threading.Tasks;
 namespace SampleEntityFramework {
     class Program {
         static void Main(string[] args) {
+
+            Console.WriteLine("# 1.1");
+            //Exercise1_1();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.2");
+            Exercise1_2();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.3");
+            Exercise1_3();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.4");
+            Exercise1_4();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.5");
+            Exercise1_5();
+
+            Console.ReadLine();
+
             //InsertBooks();
             //Console.Write("データを挿入しました。続けるにはEnterキーを押してください。");
 
@@ -34,6 +56,76 @@ namespace SampleEntityFramework {
             Console.ReadLine();
             Console.WriteLine();
         }
+
+        private static void Exercise1_1() {
+            using (var db = new BooksDbContext()) {
+                var book1 = new Book {
+                    Title = "真珠夫人",
+                    PublishedYear = 2002,
+                    Author = new Author {
+                        Birthday = new DateTime(1888, 12, 26),
+                        Gender = "M",
+                        Name = "菊池寛",
+                    }
+                };
+                db.Books.Add(book1);
+                var book2 = new Book {
+                    Title = "伊豆の踊子",
+                    PublishedYear = 2003,
+                    Author = new Author {
+                        Birthday = new DateTime(1899, 6, 14),
+                        Gender = "M",
+                        Name = "川端康成",
+                    }
+                };
+                db.Books.Add(book2);
+                var author1 = db.Authors.Single(a => a.Name == "夏目漱石");
+                var book3 = new Book {
+                    Title = "こころ",
+                    PublishedYear = 1991,
+                    Author = author1
+                };
+                db.Books.Add(book3);
+
+                var author2 = db.Authors.Single(a => a.Name == "宮沢賢治");
+                var book4 = new Book {
+                    Title = "注文の多い料理店",
+                    PublishedYear = 2000,
+                    Author = author2
+                };
+                db.Books.Add(book4);
+                db.SaveChanges();  //データベースを更新
+            }
+        }
+
+        private static void Exercise1_2() {
+            using (var db = new BooksDbContext()) {
+                foreach (var book in db.Books.ToList()) {
+                    Console.WriteLine($"「{book.Title}」（{book.PublishedYear}） {book.Author.Name}");
+                }
+            }
+        }
+
+        private static void Exercise1_3() {
+            using (var db = new BooksDbContext()) {
+                foreach (var book in db.Books.Where(b => b.Title.Length == db.Books.Max(m => m.Title.Length))) {
+                    Console.WriteLine(book.Title);
+                }
+            }
+        }
+
+        private static void Exercise1_4() {
+            using(var db = new BooksDbContext()) {
+                foreach (var book in db.Books.ToList()) {
+                    var oldBooks = db.Books.Min(y => y.PublishedYear);
+                }
+            }
+        }
+
+        private static void Exercise1_5() {
+
+        }
+
         // List 13-5
         static void InsertBooks() {
             using (var db = new BooksDbContext()) {
