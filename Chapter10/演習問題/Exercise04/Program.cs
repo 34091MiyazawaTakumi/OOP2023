@@ -14,6 +14,7 @@ namespace Exercise04 {
             var newline = lines
                 .Select(s => Regex.Replace(s, @"\b(V|v)ersion\s*=\s*""v4.0""", @"version=""v5.0"""));
 
+            //書き込み
             File.WriteAllLines("sample.txt", newline);
 
             //foreach (var line in lines) {
