@@ -46,7 +46,12 @@ namespace RssReader {
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
-            wbBrowser.Navigate(ItemDatas[lbRssTitle.SelectedIndex].Link);
+            try {
+                wbBrowser.Navigate(ItemDatas[lbRssTitle.SelectedIndex].Link);
+            }
+            catch (ArgumentOutOfRangeException) {
+                return;
+            }
         }
     }
 }
