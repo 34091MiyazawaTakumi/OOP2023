@@ -88,17 +88,24 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
-            var groups = Library.Books.Join(Library.Categories,
-                                        book => book.CategoryId,
-                                        category => category.Id,
-                                        (book, category) => new {
-                                            Title = book.Title,
-                                            Category = category.Name,
-                                            PublishedYear = book.PublishedYear
-                                        })
-                                      .Where(c => c.Category == "Development")
-                                      .GroupBy(b => b.PublishedYear)
-                                      .OrderBy(o => o.Key);
+            //var groups = Library.Books.Join(Library.Categories,
+            //                            book => book.CategoryId,
+            //                            category => category.Id,
+            //                            (book, category) => new {
+            //                                Title = book.Title,
+            //                                Category = category.Name,
+            //                                PublishedYear = book.PublishedYear
+            //                            })
+            //                          .Where(c => c.Category == "Development")
+            //                          .GroupBy(b => b.PublishedYear)
+            //                          .OrderBy(o => o.Key);
+
+            var catid = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books
+                                .Where(b => b.CategoryId == catid)
+                                .GroupBy(b => b.PublishedYear)
+                                .OrderBy(b => b.Key);
+
             foreach (var group in groups) {
                 Console.WriteLine("#{0}年", group.Key);
                 foreach (var book in group) {
@@ -108,8 +115,20 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_8() {
-            //var groups = Library.Categories.GroupJoin(Library.Books,
-            //    );
+            var groups = Library.Categories
+                                .GroupJoin(
+                                    Library.Books,
+                                    c => c.Id,
+                                    b => b.CategoryId,
+                                    (c, b) => new {
+                                        CategoryName = c.Name,
+                                        Count = b.Count()
+                                    })
+                                .Where(x => x.Count >= 4);
+
+            foreach (var category in groups) {
+                Console.WriteLine(category.CategoryName);
+            }
         }
     }
 }
