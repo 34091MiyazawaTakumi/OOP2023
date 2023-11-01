@@ -12,7 +12,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="colorArea" Background="PaleTurquoise" Margin="20"/>
+        <Label x:Name="colorArea" Background="PaleTurquoise" Margin="15"/>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="58"/>
@@ -28,21 +28,34 @@
             <TextBlock Grid.Column="0" Grid.Row="0" Text="R" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="G" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16"/>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="B" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" FontSize="16"/>
-            <Slider x:Name="rSlider" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255"/>
-            <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255"/>
-            <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255"/>
-            <TextBox x:Name="rValue" Grid.Column="2" Grid.Row="0" Text="{Binding ElementName=rSlider, Path=Value, Mode=TwoWay}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
-            <TextBox x:Name="gValue" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=gSlider, Path=Value, Mode=TwoWay}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
-            <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" Text="{Binding ElementName=bSlider, Path=Value, Mode=TwoWay}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
-            <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom"/>
+            <Slider x:Name="rSlider" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="gSlider" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True"/>
+            <Slider x:Name="bSlider" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Height="30" ValueChanged="rgbSlider_ValueChanged" Maximum="255" IsSnapToTickEnabled="True"/>
+            <TextBox x:Name="rValue" Grid.Column="2" Grid.Row="0" Text="{Binding ElementName=rSlider, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
+            <TextBox x:Name="gValue" Grid.Column="2" Grid.Row="1" Text="{Binding ElementName=gSlider, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
+            <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" Text="{Binding ElementName=bSlider, Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Margin="5" FontSize="18"/>
+            <ComboBox x:Name="cbColor" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" Grid.Row="3" Margin="10,30,10,0" SelectionChanged="ComboBox_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black">
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
         </Grid>
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="stockButton" Content="STOCK" Grid.Row="0" Margin="10,5" FontSize="24"/>
-            <ListBox x:Name="stockList" Grid.Row="1" Height="204" Margin="10"/>
+            <Button x:Name="stockButton" Content="STOCK" Grid.Row="0" Margin="10,5" FontSize="24" Click="stockButton_Click"/>
+            <ListBox x:Name="stockList" Grid.Row="1" Height="204" Margin="10" SelectionChanged="stockList_SelectionChanged"/>
         </Grid>
     </Grid>
 </Window>
