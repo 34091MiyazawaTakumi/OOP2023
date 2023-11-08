@@ -20,9 +20,10 @@ namespace RssReader {
             InitializeComponent();
         }
 
+
+
         private void btGet_Click(object sender, EventArgs e) {
             lbRssTitle.Items.Clear();  //リストボックスのクリア
-
             try {
                 using (var wc = new WebClient()) {
                     var url = wc.OpenRead(tbUrl.Text);
@@ -42,7 +43,6 @@ namespace RssReader {
             catch(ArgumentException) {
                 return;
             }
-            
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
@@ -54,11 +54,27 @@ namespace RssReader {
             }
         }
 
-        private void lbRssTitle_SelectedIndexChanged(object sender, EventArgs e) {
+        private void rbEntertainment_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/topics/entertainment.xml";
+        }
+
+        private void rbSports_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/topics/sports.xml";
+        }
+
+        private void rbScience_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/topics/science.xml";
+        }
+
+        private void rbIt_CheckedChanged(object sender, EventArgs e) {
+            tbUrl.Text = "https://news.yahoo.co.jp/rss/topics/it.xml";
+        }
+
+        private void btRegistration_Click(object sender, EventArgs e) {
 
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void cbRegistrationList_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
     }

@@ -201,6 +201,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleSlider", "WPF\SampleS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollarChecker", "WPF\CollarChecker\CollarChecker.csproj", "{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\SampleUnitConverter\SampleUnitConverter.csproj", "{F42823EC-90B3-4548-92AE-622CA73F13FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -729,6 +731,14 @@ Global
 		{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC}.Release|x86.ActiveCfg = Release|Any CPU
 		{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC}.Release|x86.Build.0 = Release|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -816,6 +826,7 @@ Global
 		{26B9F4DE-732E-42E3-9D2A-DBED6F7F394D} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 		{9CAE661C-7B4C-4421-9607-9513E8549933} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 		{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
+		{F42823EC-90B3-4548-92AE-622CA73F13FC} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DEDC06B-2B9A-4FBB-ADEC-9AB925EB810A}
