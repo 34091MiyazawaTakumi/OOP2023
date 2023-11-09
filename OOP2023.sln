@@ -203,6 +203,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollarChecker", "WPF\Collar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleUnitConverter", "WPF\SampleUnitConverter\SampleUnitConverter.csproj", "{F42823EC-90B3-4548-92AE-622CA73F13FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeightUnitConverter", "WPF\WeightUnitConverter\WeightUnitConverter.csproj", "{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -739,6 +741,14 @@ Global
 		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{F42823EC-90B3-4548-92AE-622CA73F13FC}.Release|x86.Build.0 = Release|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Debug|x86.Build.0 = Debug|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Release|x86.ActiveCfg = Release|Any CPU
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -827,6 +837,7 @@ Global
 		{9CAE661C-7B4C-4421-9607-9513E8549933} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 		{CF757DFD-3DA2-442F-80CC-48DCE2DE9ADC} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 		{F42823EC-90B3-4548-92AE-622CA73F13FC} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
+		{18E3F90C-DC3B-410C-8D1D-0A2F5EA64211} = {CC9BC69F-B2FC-4BF0-94B1-D1B27AEE6684}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DEDC06B-2B9A-4FBB-ADEC-9AB925EB810A}
