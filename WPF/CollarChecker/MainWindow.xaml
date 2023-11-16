@@ -12,7 +12,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="colorArea" Background="PaleTurquoise" Margin="15"/>
+        <Label x:Name="colorArea" Background="Black" Margin="15" BorderBrush="Black" BorderThickness="2"/>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="58"/>

@@ -86,6 +86,7 @@ namespace RssReader {
                     cbRegistrationList.Items.Add(Registration);
                     registrationDict.Add(tbRegistrationUrl.Text, tbRegistrationName.Text);
                     cbRegistrationList.SelectedItem = Registration;
+                    lbMessage.Text = "登録しました。";
                 }
             }
             else {
@@ -107,6 +108,7 @@ namespace RssReader {
             tbUrl.Text = "";
             lbRssTitle.Items.Clear();
             wbBrowser.DocumentText = "";
+            lbMessage.Text = "すべてをクリアしました。";
         }
 
         private void btDelete_Click(object sender, EventArgs e) {
@@ -115,6 +117,7 @@ namespace RssReader {
                 cbRegistrationList.Text = "";
                 tbRegistrationName.Text = "";
                 tbRegistrationUrl.Text = "";
+                lbMessage.Text = "お気に入りを削除しました。";
             }
             catch (ArgumentOutOfRangeException) {
                 lbMessage.Text = "削除する項目がありません。";
@@ -172,10 +175,12 @@ namespace RssReader {
 
         private void btRefresh_Click(object sender, EventArgs e) {
             wbBrowser.Refresh();
+            lbMessage.Text = "リフレッシュ済み";
         }
 
         private void btClear_Click(object sender, EventArgs e) {
             tbUrl.Text = "";
+            lbMessage.Text = "URLをクリアしました。";
         }
     }
 }

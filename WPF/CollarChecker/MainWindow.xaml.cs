@@ -26,7 +26,7 @@ namespace CollarChecker {
 
         private MyColor[] GetColorList() {
             return typeof(Colors).GetProperties(BindingFlags.Public | BindingFlags.Static)
-                .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
+                .Select(i => new MyColor((Color)i.GetValue(null), i.Name) { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
         private void rgbSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
@@ -36,31 +36,56 @@ namespace CollarChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            string colors = string.Format("R={0} G={1} B={2}", rSlider.Value, gSlider.Value, bSlider.Value);
-            stockList.Items.Add(colors);
+            if (cbColor.SelectedIndex == -1) {
+                string colors = string.Format("R={0} G={1} B={2}", rSlider.Value, gSlider.Value, bSlider.Value);
+                stockList.Items.Add(colors);
+            }
+            else {
+                MyColor selectColor = new MyColor(Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value), cbColor.Text);
+                stockList.Items.Add(selectColor);
+                cbColor.SelectedIndex = -1;
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            var selectColor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = selectColor.Color;
-            var name = selectColor.Name;
-            colorArea.Background = new SolidColorBrush(color);
-            rSlider.Value = color.R;
-            gSlider.Value = color.G;
-            bSlider.Value = color.B;
+            if (cbColor.SelectedIndex != -1) {
+                var selectColor = (MyColor)((ComboBox)sender).SelectedItem;
+                var color = selectColor.Color;
+                var name = selectColor.Name;
+                colorArea.Background = new SolidColorBrush(color);
+                rSlider.Value = color.R;
+                gSlider.Value = color.G;
+                bSlider.Value = color.B;
+            }
         }
 
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            string[] split = stockList.SelectedItem.ToString().Split(' ','=');
-            rValue.Text = split[1];
-            gValue.Text = split[3];
-            bValue.Text = split[5];
+            if (stockList.SelectedItem.ToString().Contains(" ")) {
+                string[] split = stockList.SelectedItem.ToString().Split(' ', '=');
+                rValue.Text = split[1];
+                gValue.Text = split[3];
+                bValue.Text = split[5];
+            }
+            else {
+                MyColor selectColor = (MyColor)stockList.SelectedItem;
+                rValue.Text = selectColor.Color.R.ToString();
+                gValue.Text = selectColor.Color.G.ToString();
+                bValue.Text = selectColor.Color.B.ToString();
+            }
         }
     }
 
     public class MyColor {
         public Color Color { get; set; }
         public string Name { get; set; }
+
+        public MyColor(Color value, string Name) {
+            this.Color = value;
+            this.Name = Name;
+        }
+        public override string ToString() {
+            return Name;
+        }
     }
 
 }
