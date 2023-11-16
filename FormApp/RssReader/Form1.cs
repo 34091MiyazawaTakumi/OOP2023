@@ -113,6 +113,8 @@ namespace RssReader {
 
         private void btDelete_Click(object sender, EventArgs e) {
             try {
+                registrationSet Registration = (registrationSet)cbRegistrationList.SelectedItem;
+                registrationDict.Remove(Registration.Url);
                 cbRegistrationList.Items.RemoveAt(cbRegistrationList.SelectedIndex);
                 cbRegistrationList.Text = "";
                 tbRegistrationName.Text = "";
