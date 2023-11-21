@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CollarChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="700">
+        Title="ColorChecker" Height="300" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -55,7 +55,7 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             <Button x:Name="stockButton" Content="STOCK" Grid.Row="0" Margin="10,5" FontSize="24" Click="stockButton_Click"/>
-            <ListBox x:Name="stockList" Grid.Row="1" Height="204" Margin="10" SelectionChanged="stockList_SelectionChanged"/>
+            <ListBox x:Name="stockList" Grid.Row="1" Height="204" Margin="10" MouseDoubleClick="stockList_MouseDoubleClick"/>
         </Grid>
     </Grid>
 </Window>

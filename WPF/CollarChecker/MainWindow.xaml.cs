@@ -59,7 +59,22 @@ namespace CollarChecker {
             }
         }
 
-        private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        //private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        //    if (stockList.SelectedItem.ToString().Contains(" ")) {
+        //        string[] split = stockList.SelectedItem.ToString().Split(' ', '=');
+        //        rValue.Text = split[1];
+        //        gValue.Text = split[3];
+        //        bValue.Text = split[5];
+        //    }
+        //    else {
+        //        MyColor selectColor = (MyColor)stockList.SelectedItem;
+        //        rValue.Text = selectColor.Color.R.ToString();
+        //        gValue.Text = selectColor.Color.G.ToString();
+        //        bValue.Text = selectColor.Color.B.ToString();
+        //    }
+        //}
+
+        private void stockList_MouseDoubleClick(object sender, MouseButtonEventArgs e) {
             if (stockList.SelectedItem.ToString().Contains(" ")) {
                 string[] split = stockList.SelectedItem.ToString().Split(' ', '=');
                 rValue.Text = split[1];

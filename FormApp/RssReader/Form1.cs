@@ -114,12 +114,17 @@ namespace RssReader {
         private void btDelete_Click(object sender, EventArgs e) {
             try {
                 registrationSet Registration = (registrationSet)cbRegistrationList.SelectedItem;
-                registrationDict.Remove(Registration.Url);
-                cbRegistrationList.Items.RemoveAt(cbRegistrationList.SelectedIndex);
-                cbRegistrationList.Text = "";
-                tbRegistrationName.Text = "";
-                tbRegistrationUrl.Text = "";
-                lbMessage.Text = "お気に入りを削除しました。";
+                if (Registration != null) {
+                    registrationDict.Remove(Registration.Url);
+                    cbRegistrationList.Items.RemoveAt(cbRegistrationList.SelectedIndex);
+                    cbRegistrationList.Text = "";
+                    tbRegistrationName.Text = "";
+                    tbRegistrationUrl.Text = "";
+                    lbMessage.Text = "お気に入りを削除しました。";
+                }
+                else {
+                    lbMessage.Text = "削除する項目がありません。";
+                }
             }
             catch (ArgumentOutOfRangeException) {
                 lbMessage.Text = "削除する項目がありません。";
